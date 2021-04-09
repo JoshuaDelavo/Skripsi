@@ -5,40 +5,85 @@
 \section{Latar Belakang}
 \label{sec:label}
 
-Bagian ini akan diisi dengan apa yang melatarbelakangi pembuatan template skripsi ini.
-Termasuk juga masalah-masalah yang akan dihadapi untuk membuatnya, termasuk kurangnya kemampuan penguasaan \LaTeX{} sehingga template ini dibuat dengan mengandalkan berbagai contoh yang tersebar di dunia maya, yang digabung-gabung menjadi satu jua.
-Bagian lain juga akan dilengkapi, untuk sementara diisi dengan lorem ipsum versi bahasa inggris.
+Dibutuhkan waktu yang lama bagi para pengembang web yang ingin membuat aplikasi \textit{desktop}, dimana mereka perlu mempelajari bahasa baru bersamaan dengan kerangka kerjanya. Hal ini tentunya akan menjadi penghalang bagi mereka yang mau mengembangkan aplikasi desktop. Maka dari itu, saat ini terdapat sebuah kerangka kerja yang tersedia bagi pengembang web untuk membuat aplikasi \textit{desktop} lintas \textit{platform}. \textit{Electron} adalah salah satu kerangka kerja terbaru yang memungkinkan pengembang membuat aplikasi \textit{desktop} asli dengan teknologi web populer : JavaScript, HTML5, dan CSS. Dengan \textit{Electron}, pengembang web dapat menggunakan keterampilan yang mereka miliki untuk membangun aplikasi yang memiliki banyak kemampuan seperti aplikasi \textit{desktop} asli. \textit{Elektron} telah menjadi sangat populer sejak dirilis dan digunakan oleh perusahaan seperti \textit{Microsoft}, \textit{Facebook}, \textit{Slack}, dan \textit{Docker}. Aplikasi ini dapat dikemas untuk dapat berjalan langsung di \textit{macOS}, \textit{Windows}, dan \textit{Linux}. Bisa juga didistribusikan melalui \textit{Mac App Store} atau \textit{Microsoft Store}. Logo Electron dapat dilihat di Gambar \ref{fig:gambar1}.
 
-\dtext{5-10}
+\begin{figure} [H]
+    \centering
+    \includegraphics[width=8cm, height=4cm]{Gambar/Electron.jpg}
+    \caption{Logo Electron}
+    \label{fig:gambar1}
+\end{figure}
+
+\footnote{https://cdn.hipwallpaper.com/i/62/53/yK5zr0.jpg}
+
+Dalam pembuatan sebuah aplikasi \textit{desktop}, tentunya kita memerlukan \textit{library} untuk membantu kita dalam membuat aplikasi tersebut. Terdapat banyak \textit{library} visualisasi yang tersedia, contohnya : \textit{Vega}, \textit{D3}, dan \textit{Vis js}. Namun untuk \textit{library} visualisasi \textit{Vega} dan \textit{D3} terlalu \textit{powerful} untuk menangani proyek visualisasi kurikulum dalam bentuk \textit{tree} dan \textit{timeline}. Library visualisasi \textit{Vis js} sudah sangat memadai untuk menangani proyek tersebut. \textit{Vis js} adalah sebuah \textit{library} visualisasi berbasis \textit{browser} yang bersifat dinamis. \textit{Library} ini dirancang agar mudah digunakan untuk menangani data dinamis dalam jumlah yang besar dan memungkinkan untuk memanipulasi serta berinteraksi dengan data tersebut. \textit{Library} ini terdiri dari komponen - komponen, seperti \textit{DataSet}, \textit{Timeline}, \textit{Network}, \textit{Graph2d}, dan \textit{Graph3d}. Logo Vis js dapat dilihat pada gambar \ref{fig:gambar2}.
+
+\begin{figure} [H]
+    \centering
+    \includegraphics[width=4cm, height=4cm]{Gambar/visJs.png}
+    \caption{Logo VisJs}
+    \label{fig:gambar2}
+\end{figure}
+
+\footnote{https://i.pinimg.com/originals/e1/df/59/e1df59c6d0ca7aaf3746c2238e075c48.png}
+
+Saat mahasiswa akan melakukan \textit{FRS}, seringkali mereka kesulitan untuk melihat kurikulum tahun ajaran yang berlaku. Karena setiap kurikulum memiliki aturan yang berbeda dalam pengambilan matakuliah ataupun matakuliah yang disediakan, maka mahasiswa kadang bingung untuk memilih matakuliah apa yang akan diambil di semester berikutnya.
+
+Maka dari itu, pada skripsi ini akan dibuat sebuah aplikasi visualisasi kurikulum 2018 berbasis \textit{Electron} dengan menggunakan \textit{library Vis js}. Dengan aplikasi ini diharapkan mahasiswa dapat lebih mudah untuk melihat kurikulum yang ada sehingga mempermudah mereka untuk meemilih matakuliah apa yang akan diambil di semester berikutnya, kemudian dengan penggunaan \textit{framework cross platform Electron} ini diharapkan semua mahasiswa pengguna \textit{macOs}, \textit{Windows}, dan \textit{Linux} dapat mengaksesnya dengan mudah.
+
 
 \section{Rumusan Masalah}
 \label{sec:rumusan}
-Bagian ini akan diisi dengan penajaman dari masalah-masalah yang sudah diidentifikasi di bagian sebelumnya. 
+Rumusan masalah yang akan dibahas pada skripsi ini adalah : 
+\begin{enumerate}
+    \item Bagaimana cara memvisualisasikan kurikulum 2018 dalam bentuk \textit{tree}?
+    \item Bagaimana cara memvisualisasikan kurikulum 2018 dalam bentuk \textit{timeline}?
+\end{enumerate}
 
-\dtext{6}
+
 
 \section{Tujuan}
 \label{sec:tujuan}
-Akan dipaparkan secara lebih terperinci dan tersturkur apa yang menjadi tujuan pembuatan template skripsi ini
+Tujuan yang akan dicapai dari penulisan skripsi ini adalah : 
+\begin{enumerate}
+    \item Memahami cara memvisualisasikan kurikulum 2018 dalam bentuk \textit{tree}.
+    \item Memahami cara memvisualisasikan kurikulum 2018 dalam bentuk \textit{timeline}.
+\end{enumerate}
 
-\dtext{7}
+
 
 \section{Batasan Masalah}
 \label{sec:batasan}
-Untuk mempermudah pembuatan template ini, tentu ada hal-hal yang harus dibatasi, misalnya saja bahwa template ini bukan berupa style \LaTeX{} pada umumnya (dengan alasannya karena belum mampu jika diminta membuat seperti itu)
+Dalam skripsi ini dibuat batasan-batasan masalah dalam pembuatan perangkat lunak visualisasi kurikulum 2018. Batasan-batasan masalah yang ditetapkan adalah sebagai berikut :
+\begin{enumerate}
+    \item Perangkat lunak ini hanya memvisualisasikan kurikulum milik Universitas Katolik Parahyangan tahun 2018.
+    \item Perangkat lunak ini hanya memvisusalisasikan dalam bentuk \textit{tree} dan \textit{timeline}.
+    \item Perangkat lunak ini hanya akan menggunakan bahasa \textit{HTML}, \textit{PHP} dan \textit{JavaScript}
+\end{enumerate}
 
-\dtext{8}
+
 
 \section{Metodologi}
 \label{sec:metlit}
-Tentunya akan diisi dengan metodologi yang serius sehingga templatenya terkesan lebih serius.
+Metodologi penelitian berisi langkah-langkah dengan urutan yang tepat agar skripsi ini dapat berjalan sistematis. Bagian - bagian pengerjaan skripsi ini adalah :
+\begin{enumerate}
+    \item Melakukan studi tentang \textit{framework Electron} dan \textit{Library Vis js}.
+    \item Mempelajari cara membuat aplikasi berbasis \textit{Electron}.
+    \item Mempelajari cara memvisualisasikan data dalam bentuk \textit{tree} dan \textit{timeline} dengan \textit{Vis js}.
+    \item Mempelajari data kurikulum 2018 di github beserta cara pengambilan datanya.
+    \item Merancang aplikasi berbasis \textit{Electron}.
+    \item Merancang visualisasi kurikulum 2018 dalam bentuk \textit{tree}.
+    \item Merancang visualisasi kurikulum 2018 dalam bentuk \textit{timeline}.
+    \item Mendesain antarmuka aplikasi.
+    \item Melakukan pengujian dan ekperimen.
+    \item Membuat dokumen skripsi.
+\end{enumerate}
 
-\dtext{9}
+
 
 \section{Sistematika Pembahasan}
 \label{sec:sispem}
-Rencananya Bab 2 akan berisi petunjuk penggunaan template dan dasar-dasar \LaTeX.
-Mungkin bab 3,4,5 dapt diisi oleh ketiga jurusan, misalnya peraturan dasar skripsi atau pedoman penulisan, tentu jika berkenan.
-Bab 6 akan diisi dengan kesimpulan, bahwa membuat template ini ternyata sungguh menghabiskan banyak waktu.
+Rencananya skripsi ini terdiri dari empat bab, yaitu pendahuluan, landasan teori, implementasi dan analisis, dan kesimpulan dan saran. Pada Bab I membahas latar belakang dibuatnya skripsi, rumusan masalah yang terdapat pada skripsi, tujuan skripsi ini dibuat, batasan masalah agar skripsi yang dibuat tidak terlalu luas, dan metodologi yang berisi langkah - langkah pengerjaan skripsi agar berjalan sistematis.
 
-\dtext{10}
+Bab II berisi teori - teori yang berfungsi sebagai referensi dalam pembuatan skripsi dan membantu dalam menyelesaikan masalah pada skripsi. Bab III berisi implementasi perangkat lunak yang berlandaskan teori - teori yang telah dipelajari serta analisis terhadap perangkat lunak yang telah dibuat. Bab IV berisi kesimpulan skripsi yang telah dibuat dan juga saran yang ditujukan untuk skripsi berikutnya. 
+
