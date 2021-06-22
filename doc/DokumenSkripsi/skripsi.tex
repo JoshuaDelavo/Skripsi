@@ -37,6 +37,31 @@
 %=============================================================================
 
 \documentclass[11pt,a4paper,twoside,openright,notitlepage]{report}
+%Define the listing package
+\usepackage{listings} %code highlighter
+\usepackage{color} %use color
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+\definecolor{darkgray}{rgb}{.4,.4,.4}
+\definecolor{purple}{rgb}{0.65, 0.12, 0.82}
+ 
+%define Javascript language
+\lstdefinelanguage{JavaScript}{
+keywords={typeof, new, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break},
+keywordstyle=\color{blue}\bfseries,
+ndkeywords={class, export, boolean, throw, implements, import, this},
+ndkeywordstyle=\color{darkgray}\bfseries,
+identifierstyle=\color{black},
+sensitive=false,
+comment=[l]{//},
+morecomment=[s]{/*}{*/},
+commentstyle=\color{purple}\ttfamily,
+stringstyle=\color{red}\ttfamily,
+morestring=[b]',
+morestring=[b]"
+}
+ 
 \setcounter{secnumdepth}{4}
 \usepackage[bahasa]{babel}%bahasa indonesia
 \usepackage{lmodern}%font latin modern
@@ -240,7 +265,8 @@
 	tabsize=4, breaklines=true, basicstyle=\fontfamily{fvm}\selectfont\tiny, 
 	commentstyle=\itshape\color{gray}, keywordstyle=\bfseries\color{blue}, 
 	identifierstyle=\color{black}, stringstyle=\color{orange},
-	literate={-}{-}1{-\,-}{--}1
+	literate={-}{-}1{-\,-}{--}1,
+	language=JavaScript
 } 
 %\toggletrue{develop} % aktifkan untuk mode develop
 %apakah dalam develop mode ?
