@@ -11,6 +11,8 @@ Dalam penyusunan Kurikulum 2018 Program Studi Teknik Informatika secara khusus j
 \ref{fig:gambar1}. Tahapan penyusunan kurikulum 2018 meliputi kegiatan sebagai berikut:
 
 \begin{enumerate}
+
+
     \item Melakukan evaluasi diri
     \item Merumuskan profil lulusan dengan pelacakan lulusan
     \item Menentukan capaian pembelajaran
@@ -233,7 +235,10 @@ Untuk cara membuat aplikasi dengan \textit{electron} adalah sebagai berikut :
         }
     }
     \end{lstlisting}
-    \item Jalankan aplikasi \textit{electron} dengan mengetik npm start pada command prompt.
+    \item Jalankan aplikasi \textit{electron} dengan mengetik \textit{npm start} pada \textit{command prompt}.
+    (Namun, pada tahap ini akan muncul \textit{error} yang meemberi tahu bahwa \textit{electron} tidak dapat menemukan aplikasi untuk dijalankan.)
+    \item Buatlah file kosong bernama \textit{main.js} di folder \textit{root} proyek. (Jika kita mengetikan kembali \textit{npm start} pada \textit{command prompt}, maka aplikasi \textit{electron} akan berjalan dan sudah tidak ada \textit{error}.
+    
 \end{enumerate}
 
 \newpage
@@ -287,12 +292,12 @@ Untuk cara membuat aplikasi dengan \textit{electron} adalah sebagai berikut :
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=16cm, height=4cm]{Gambar/hasilTimeline.jpg}
+    \includegraphics[width=16.5cm, height=2.5cm]{Gambar/hasilTimeline.jpg}
     \caption{Hasil contoh untuk membuat \textit{timeline} menggunakan \textit{vis.js}}
     \label{fig:gambarHasilTimeline}
 \end{figure}
 
-
+\newpage
 \subsection{Network}
 Jaringan (\textit{Network}) adalah visualisasi untuk menampilkan jaringan - jaringan yang terdiri dari \textit{node} dan \textit{edge}. Visualisasinya mudah digunakan dan mendukung bentuk kustom, gaya, warna, ukuran, gambar, dan lain - lain. Visualisasi jaringan bekerja dengan lancar di \textit{browser} moderen apapun hingga beberapa ribu \textit{node} dan \textit{edge}. Untuk menangani jumlah node yang lebih besar, jaringan memiliki dukungan pengelompokan. Jaringan menggunakan \textit{HTML canvas} untuk \textit{rendering}.
 
@@ -301,6 +306,7 @@ Untuk menggunakan \textit{vis-network}, kita harus menyertakan file \textit{vis-
 Setelah kita memiliki data, yang kita butuhkan hanyalah \textit{container div} untuk memberi tahu \textit{vis} di mana harus meletakkan jaringan kita. Selain itu, kita dapat menggunakan pilihan objek untuk menyesuaikan banyak aspek jaringan. Contoh kode pembuatan \textit{network}  dimana file \textit{vis-network.js} dimasukkan dengan cara menautkan dari unpkg.com dapat dilihat pada Kode \ref{lst:kodeNetwork} dan untuk hasilnya dapat dilihat pada gambar \ref{fig:gambarHasilNetwork}.
 
 \begin{lstlisting}[language=HTML, caption=Contoh kode untuk membuat \textit{network} menggunakan \textit{vis.js}\label{lst:kodeNetwork}]
+<!DOCTYPE HTML>
 <html>
 <head>
     <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
@@ -358,6 +364,186 @@ Setelah kita memiliki data, yang kita butuhkan hanyalah \textit{container div} u
     \label{fig:gambarHasilNetwork}
 \end{figure}
 
+\subsection{DataSet}
+Vis.js hadir dengan \textit{DataSet} yang fleksibel, yang dapat digunakan untuk menyimpan dan memanipulasi data yang tidak terstruktur serta memperhatikan perubahan dalam data tersebut. \textit{DataSet} berbasis nilai, dimana item data dapat ditambahkan, diperbarui, dihapus, dan seseorang dapat menyetujui perubahan tersebut dalam \textit{DataSet}. \textit{DataSet} juga dapat digunakan untuk menyimpan objek \textit{JSON} berdasarkan idnya. Objek dapat ditambahkan, diperbarui, dan dihapus dari \textit{DatSet}. Data dalam \textit{DataSet} dapat difilter dan diurutkan, serta \textit{fields} (seperti tanggal) dapat dikonversi ke dalam tipe tertentu. Data dapat dinormalisasi saat menambahkannya kedalam \textit{DataSet}. Contoh kode pembuatan \textit{DataSet} dapat dilihat pada Kode \ref{lst:kodeDataSet} dan untuk hasilnya dapat dilihat pada gambar.
+
+\begin{lstlisting}[language=JavaScript, caption=Contoh kode untuk membuat \textit{DataSet} menggunakan \textit{vis.js}\label{lst:kodeDataSet}]
+// create a DataSet
+var options = {};
+var data = new vis.DataSet(options);
+
+// add items
+// note that the data items can contain different properties and data formats
+data.add([
+  {id: 1, text: 'item 1', date: new Date(2013, 6, 20), group: 1, first: true},
+  {id: 2, text: 'item 2', date: '2013-06-23', group: 2},
+  {id: 3, text: 'item 3', date: '2013-06-25', group: 2},
+  {id: 4, text: 'item 4'}
+]);
+
+// subscribe to any change in the DataSet
+data.on('*', function (event, properties, senderId) {
+  console.log('event', event, properties);
+});
+
+// update an existing item
+data.updateOnly({id: 2, group: 1});
+
+// remove an item
+data.remove(4);
+
+// get all ids
+var ids = data.getIds();
+console.log('ids', ids);
+
+// get a specific item
+var item1 = data.get(1);
+console.log('item1', item1);
+
+// retrieve a filtered subset of the data
+var items = data.get({
+  filter: function (item) {
+    return item.group == 1;
+  }
+});
+console.log('filtered items', items);
+
+// retrieve formatted items
+var items = data.get({
+  fields: ['id', 'date'],
+  type: {
+    date: 'ISODate'
+  }
+});
+console.log('formatted items', items);
+\end{lstlisting}
+
+\subsection{Graph2d}
+\textit{Graph2d} adalah grafik visualisasi interaktif yang berfungsi untuk menggambar data dalam bentuk grafik dua dimensi. Kita dengan bebas dapat memindahkan dan memperbesar grafik dengan cara menyeret dan menggulir pada jendela grafik. \textit{Graph2d} menggunakan \textit{HTML DOM} (\textit{JavaScript}) dan \textit{SVG} (\textit{Scalable Vector Graphics}) untuk proses \textit{rendering}. Hal ini memungkinkan penyesuaian yang fleksibel menggunakan \textit{styling} css. Contoh kode pembuatan \textit{Graph2d} dapat dilihat pada Kode \ref{lst:kodeGraph2d} dan untuk hasilnya dapat dilihat pada gambar \ref{fig:gambarHasilGraph2d}.
+
+\begin{lstlisting}[language=HTML, caption=Contoh kode untuk membuat \textit{graph2d} menggunakan \textit{vis.js}\label{lst:kodeGraph2d}]
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>Graph2d or Basic Example</title>
+
+  <style type="text/css">
+    body, html {
+      font-family: sans-serif;
+    }
+  </style>
+
+  <script src="../../dist/vis.js"></script>
+  <link href="../../dist/vis-timeline-graph2d.min.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="visualization"></div>
+
+<script type="text/javascript">
+  var container = document.getElementById('visualization');
+  var items = [
+      {x: '2014-06-11', y: 10},
+      {x: '2014-06-12', y: 25},
+      {x: '2014-06-13', y: 30},
+      {x: '2014-06-14', y: 10},
+      {x: '2014-06-15', y: 15},
+      {x: '2014-06-16', y: 30}
+  ];
+
+  var dataset = new vis.DataSet(items);
+  var options = {
+      start: '2014-06-10',
+      end: '2014-06-18'
+  };
+  var Graph2d = new vis.Graph2d(container, dataset, options);
+</script>
+</body>
+</html>
+\end{lstlisting}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=16.5cm, height=5cm]{Gambar/hasilGraph2d.png}
+    \caption{Hasil contoh untuk membuat \textit{graph2d} menggunakan \textit{vis.js}}
+    \label{fig:gambarHasilGraph2d}
+\end{figure}
+
+\newpage
+\subsection{Graph3d}
+Graph3d adalah grafik visualisasi interaktif yang berfungsi untuk menggambar data dalam bentuk grafik tiga dimensi. Kita dengan bebas dapat memindahkan dan memperbesar grafik dengan cara menyeret dan menggulir pada jendela grafik. Graph3d juga mendukung animasi grafik serta menggunakan HTML canvas untuk membuat grafik, dan dapat merender hingga beberapa ribu titik data dengan lancar. Contoh kode pembuatan \textit{Graph2d} dapat dilihat pada Kode \ref{lst:kodeGraph3d} dan untuk hasilnya dapat dilihat pada gambar \ref{fig:gambarHasilGraph3d}.
+
+\begin{lstlisting}[language=HTML, caption=Contoh kode untuk membuat \textit{graph3d} menggunakan \textit{vis.js}\label{lst:kodeGraph3d}]
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>Graph 3D demo</title>
+
+  <style>
+    body {font: 10pt arial;}
+  </style>
+
+  <script type="text/javascript" src="../../dist/vis.js"></script>
+
+  <script type="text/javascript">
+  var data = null;
+  var graph = null;
+
+  function custom(x, y) {
+    return (Math.sin(x/50) * Math.cos(y/50) * 50 + 50);
+  }
+
+  // Called when the Visualization API is loaded.
+  function drawVisualization() {
+    // Create and populate a data table.
+    var data = new vis.DataSet();
+    // create some nice looking data with sin/cos
+    var steps = 50;  // number of datapoints will be steps*steps
+    var axisMax = 314;
+    var axisStep = axisMax / steps;
+    for (var x = 0; x < axisMax; x+=axisStep) {
+      for (var y = 0; y < axisMax; y+=axisStep) {
+        var value = custom(x, y);
+        data.add({
+          x: x,
+          y: y,
+          z: value,
+          style: value
+        });
+      }
+    }
+
+    // specify options
+    var options = {
+      width:  '600px',
+      height: '600px',
+      style: 'surface',
+      showPerspective: true,
+      showGrid: true,
+      showShadow: false,
+      keepAspectRatio: true,
+      verticalRatio: 0.5
+    };
+
+    // create a graph3d
+    var container = document.getElementById('mygraph');
+    graph3d = new vis.Graph3d(container, data, options);
+  }
+  </script>
+</head>
+
+<body onload="drawVisualization();">
+  <div id="mygraph"></div>
+</body>
+</html>
+\end{lstlisting}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=10cm, height=6cm]{Gambar/hasilGraph3d.png}
+    \caption{Hasil contoh untuk membuat \textit{graph3d} menggunakan \textit{vis.js}}
+    \label{fig:gambarHasilGraph3d}
+\end{figure}
+
 \section{FTIS Open Data}
 FTIS (Fakultas Teknologi Informasi dan Sains) adalah sebuah fakultas milik UNPAR (Universitas Katolik Parahyangan) yang memiliki tiga program studi, yaitu : Matematika, Fisika, dan Teknik Informatika. \textit{Open data} adalah data yang dapat bebas digunakan oleh semua orang untuk digunakan dan diterbitkan kembali sesuai keinginan, tanpa adanya batasan hak cipta, paten, atau mekanisme kontrol lainnya. Maka dari itu FTIS \textit{Open Data} dapat diartikan sebagai data milik FTIS khususnya program studi teknik informatika yang secara bebas dapat digunakan secara bebas oleh orang lain. FTIS \textit{open data} tersebut dapat diakses pada \url{https://ftisunpar.github.io/data/prasyarat.json}. \cite{ftisOpenData}
 
@@ -379,7 +565,6 @@ FTIS (Fakultas Teknologi Informasi dan Sains) adalah sebuah fakultas milik UNPAR
 \end{itemize}
 
 Untuk lebih jelasnya dapat dilihat pada Kode \ref{lst:kodePrasyaratJson}.
-\newpage
 \begin{lstlisting}[language=JavaScript, caption=prasyarat.json\label{lst:kodePrasyaratJson}]
 {
     "kode": "AIF181100",
