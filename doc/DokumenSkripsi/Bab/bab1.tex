@@ -5,36 +5,20 @@
 \section{Latar Belakang}
 \label{sec:label}
 
-\begin{comment}
-Dibutuhkan waktu yang lama bagi para pengembang web yang ingin membuat aplikasi \textit{desktop}, dimana mereka perlu mempelajari bahasa baru bersamaan dengan kerangka kerjanya. Hal ini tentunya akan menjadi penghalang bagi mereka yang mau mengembangkan aplikasi desktop. Maka dari itu, saat ini terdapat sebuah kerangka kerja yang tersedia bagi pengembang web untuk membuat aplikasi \textit{desktop} lintas \textit{platform}. 
-\end{comment}
-
-
 \textit{Electron} adalah salah satu kerangka kerja terbaru yang memungkinkan pengembang membuat aplikasi \textit{native desktop} dengan teknologi web populer : JavaScript, HTML5, dan CSS. Dengan \textit{Electron}, pengembang web dapat menggunakan keterampilan yang mereka miliki untuk membangun aplikasi yang memiliki banyak kemampuan seperti aplikasi \textit{native desktop}. \textit{Elektron} telah menjadi sangat populer sejak dirilis dan digunakan oleh perusahaan, seperti : \textit{Microsoft}, \textit{Facebook}, \textit{Slack}, dan \textit{Docker}. Aplikasi ini dapat dikemas untuk dapat berjalan langsung di \textit{macOS}, \textit{Windows}, dan \textit{Linux}. Bisa juga didistribusikan melalui \textit{Mac App Store} atau \textit{Microsoft Store}.
-
-\begin{comment}
-Dalam pembuatan sebuah aplikasi \textit{desktop}, tentunya kita memerlukan \textit{library} untuk membantu kita dalam membuat aplikasi tersebut. Terdapat banyak \textit{library} visualisasi yang tersedia, contohnya : \textit{Vega}, \textit{D3}, dan \textit{Vis.js}. Namun untuk \textit{library} visualisasi \textit{Vega} dan \textit{D3} terlalu \textit{powerful} untuk menangani proyek visualisasi kurikulum dalam bentuk \textit{tree} dan \textit{timeline}. Library visualisasi \textit{Vis.js} sudah sangat memadai untuk menangani proyek tersebut.
-\end{comment}
 
  \textit{Vis.js} adalah sebuah \textit{library} visualisasi berbasis \textit{browser} yang bersifat dinamis. \textit{Library} ini dirancang agar mudah digunakan untuk menangani data dinamis (berubah secara \textit{realtime}) dalam jumlah yang besar dan memungkinkan untuk memanipulasi serta berinteraksi dengan data tersebut. \textit{Library} ini terdiri dari komponen - komponen, seperti \textit{DataSet}, \textit{Timeline}, \textit{Network} (\textit{tree}), \textit{Graph2d}, dan \textit{Graph3d}. \textit{DataSet} berfungsi untuk mengelola data yang tidak terstruktur. Terdapat fitur \textit{add}, \textit{update}, dan \textit{remove} data di dalamnya. \textit{Timeline} berfungsi untuk menampilkan data dalam bentuk \textit{timeline} yang dapat disesuaikan dengan \textit{item} dan rentangnya.  \textit{Network} (\textit{tree}) berfungsi untuk menampilkan data dalam bentuk jaringan yang dinamis, dapat diatur secara otomatis, dan dapat disesuaikan. \textit{Graph2d} berfungsi untuk menampilkan data dalam bentuk grafik dan diagram batang pada \textit{timeline} yang interaktif sesuai yang diinginkan. \textit{Graph3d} berfungsi untuk menampilkan data dalam bentuk grafik 3d dengan animasi yang interaktif. 
 
 \textit{GitHub} adalah sebuah aplikasi berbasis \textit{website} dengan \textit{Version Control System} (VCS) yang menyediakan layanan untuk menyimpan \textit{repository} dengan gratis. VCS  adalah sebuah infrastruktur yang dapat mendukung pengembangan \textit{software} secara kolaboratif. Setiap anggota yang berada di dalam sebuah tim pengembangan \textit{software} dapat menulis kode programnya masing - masing kemudian digabungkan ke server yang sudah memiliki VCS yang digunakan. \textit{Respository} merupakan tempat yang dapat digunakan untuk menyimpan berbagai file berupa \textit{source code}. Aplikasi ini termasuk sangat populer dan banyak digunakan termasuk oleh perusahaan - perusahaan besar, seperti : \textit{Facebook}, \textit{Google}, dan \textit{Twitter}.
 
-Saat mahasiswa akan melakukan \textit{FRS}, seringkali mereka kesulitan untuk melihat kurikulum tahun ajaran yang berlaku. Dikarenakan setiap kurikulum memiliki aturan yang berbeda dalam pengambilan matakuliah ataupun matakuliah yang disediakan ditambah dengan tidak adanya mata kuliah pilihan untuk setiap semesternya, maka mahasiswa kadang bingung untuk memilih matakuliah apa yang akan diambil di semester berikutnya.
+Saat mahasiswa akan melakukan pengisian formulir rencana studi (FRS), seringkali mereka kesulitan untuk melihat kurikulum tahun ajaran yang berlaku. Dikarenakan setiap kurikulum memiliki aturan yang berbeda dalam pengambilan matakuliah ataupun matakuliah yang disediakan ditambah dengan tidak adanya mata kuliah pilihan untuk setiap semesternya, maka mahasiswa kadang bingung untuk memilih matakuliah apa yang akan diambil di semester berikutnya.
 
-Maka dari itu, pada skripsi ini akan dibuat sebuah aplikasi visualisasi kurikulum 2018 berbasis \textit{Electron} dengan menggunakan \textit{library Vis.js}. Dengan aplikasi ini diharapkan mahasiswa dapat lebih mudah untuk melihat kurikulum yang ada sehingga mempermudah mereka untuk memilih matakuliah apa yang akan diambil di semester berikutnya, kemudian dengan penggunaan \textit{framework cross platform Electron} ini diharapkan semua mahasiswa pengguna \textit{macOs}, \textit{Windows}, dan \textit{Linux} dapat mengaksesnya dengan mudah.
+Maka dari itu, pada skripsi ini akan dibuat sebuah aplikasi visualisasi kurikulum 2018 berbasis \textit{Electron} dengan menggunakan \textit{library Vis.js}. Aplikasi ini akan saya namakan VisKur. Dengan aplikasi ini diharapkan mahasiswa dapat lebih mudah untuk melihat kurikulum yang ada sehingga mempermudah mereka untuk memilih matakuliah apa yang akan diambil di semester berikutnya, kemudian dengan penggunaan \textit{framework cross platform Electron} ini diharapkan semua mahasiswa pengguna \textit{macOs}, \textit{Windows}, dan \textit{Linux} dapat mengaksesnya dengan mudah.
 
 \newpage
 \section{Rumusan Masalah}
 \label{sec:rumusan}
 Rumusan masalah yang akan dibahas pada skripsi ini adalah :
-\begin{comment}
-\begin{enumerate}
-    \item Bagaimana cara memvisualisasikan kurikulum 2018 dalam bentuk \textit{tree}?
-    \item Bagaimana cara memvisualisasikan kurikulum 2018 dalam bentuk \textit{timeline}?
-    \item Bagaimana cara membaca kurikulum 2018 FTIS UNPAR dari \textit{github}?
-\end{enumerate}
-\end{comment}
 
 \begin{enumerate}
     \item Visualisasi bentuk apa yang paling cocok untuk memvisualisasikan kurikulum 2018?
@@ -44,14 +28,6 @@ Rumusan masalah yang akan dibahas pada skripsi ini adalah :
 
 \section{Tujuan}
 \label{sec:tujuan}
-\begin{comment}
-Tujuan yang akan dicapai dari penulisan skripsi ini adalah : 
-\begin{enumerate}
-    \item Memahami cara memvisualisasikan kurikulum 2018 dalam bentuk \textit{tree}.
-    \item Memahami cara memvisualisasikan kurikulum 2018 dalam bentuk \textit{timeline}.
-    \item Memahami cara membaca data kurikulum 2018 FTIS UNPAR dari \textit{github}.
-\end{enumerate}
-\end{comment}
 
 Tujuan yang akan dicapai dari penulisan skripsi ini adalah : 
 \begin{enumerate}
@@ -66,8 +42,8 @@ Tujuan yang akan dicapai dari penulisan skripsi ini adalah :
 Batasan-batasan masalah yang ditetapkan adalah sebagai berikut :
 \begin{enumerate}
     \item Kurikulum 2018 yang digunakan hanya milik program studi teknik informatika.
-    \item Perangkat lunak ini hanya memvisusalisasikan dalam bentuk \textit{tree} dan \textit{timeline}.
-    \item Perangkat lunak ini hanya akan menggunakan bahasa \textit{HTML}, \textit{PHP} dan \textit{JavaScript}
+    \item Karena keterbatasan mesin yang dimiliki, maka hanya dibuat dalam versi Windows saja
+    \item Perangkat lunak ini hanya akan menggunakan bahasa \textit{HTML} dan \textit{JavaScript}
 \end{enumerate}
 
 

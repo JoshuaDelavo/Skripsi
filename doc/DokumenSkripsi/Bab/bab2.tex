@@ -1,6 +1,7 @@
 %versi 3 (22-07-2020)
 \chapter{Landasan Teori}
 \label{chap:teori}
+Bab Landasan Teori ini berisi teori-teori yang menjadi dasar penelitian ini, meliputi kurikulum 2018, \textit{Electron}, \textit{Vis.js}, \textit{FTIS Open Data}, \textit{dan JavaScript}.
 
 \section{Kurikulum 2018}
 Kurikulum didefinisikan sebagai seperangkat rencana dan pengaturan mengenai capaian pembelajaran lulusan, bahan kajian, proses, dan penilaian yang digunakan sebagai pedoman penyelenggaraan program studi menjadi sarana utama untuk mencapai tujuan tersebut. \cite{kurikulum:2018}
@@ -55,7 +56,7 @@ Berdasarkan hasil evaluasi Kurikulum 2013, salah satu masalah yang ditemukan ada
 
 Selain memperbaiki struktur kuliah jalur pemrograman, dan perbaikan materi perkuliahan, cara lain yang digunakan untuk mendukung kemampuan pemrograman mahasiswa adalah dengan menempatkan bobot pemrograman di kuliah-kuliah yang cocok. Bobot pemrograman ini menentukan di kuliah mana saja mahasiswa harus membangun program komputer, dan seberapa besar skala program komputer yang
 dibuat. Bagian pembangunan program komputer misalnya dapat diletakkan pada saat praktikum, atau dijadikan bagian dari tugas kuliah.
-\newpage
+
 Besar bobot pemrograman dalam kurikulum ini adalah 0.25, 0.5, 0.75, dan 1. Penjelasan terkait masing - masing
 bobot ini diberikan pada Gambar \ref{fig:gambar3}.
 
@@ -160,7 +161,7 @@ Di Prodi Teknik Informatika terdapat 2 jenis prasyarat, yaitu prasyarat lulus da
 \section{Electron}
 \textit{Electron} adalah sebuah \textit{framework} untuk membangun aplikasi \textit{desktop} menggunakan \textit{JavaScript}, \textit{HTML}, dan \textit{CSS}. Dengan menyematkan \textit{Chromium} dan \textit{Node.js} ke dalam binernya, \textit{Electron} memungkinkan kita untuk mempertahankan satu basis kode \textit{JavaScript} dan membuat aplikasi lintas \textit{platform} yang berfungsi di \textit{Windows}, \textit{macOS}, dan \textit{Linux}, dimana tidak diperlukan pengalaman \textit{native} \textit{development}. \cite{electron}
 
-\textit{Electron} mewarisi arsitektur \textit{multi-process} dari \textit{Chromium}, yang membuat kerangka kerja secara arsitektur sangat mirip dengan \textit{browser web} moderen. Selanjutnya, akan dijelaskan konsep pengetahuan tentang \textit{Electron}.
+\textit{Electron} mewarisi arsitektur \textit{multi-process} dari \textit{Chromium}, yang membuat kerangka kerja secara arsitektur sangat mirip dengan \textit{browser web} moderen. Selanjutnya, akan dijelaskan konsep pengetahuan tentang \textit{Electron}. \cite{processModel}
 
 Browser web merupakan sebuah aplikasi yang sangat rumit. Selain kemampuan utama mereka untuk menampilkan konten web, mereka memiliki banyak tanggung jawab sekunder, seperti mengelola beberapa jendela atau tab dan memuat ekstensi pihak ketiga. Pada hari - hari sebelumnya, browser biasanya menggunakan satu proses untuk semua fungsi ini. Meskipun pola ini lebih sedikit \textit{overhead} untuk setiap tab yang dibuka, itu juga berarti bahwa satu situs web yang mogok atau macet akan memengaruhi seluruh browser.
 
@@ -208,45 +209,163 @@ Setiap aplikasi \textit{Electron} memunculkan proses penyaji terpisah untuk seti
 
 Maka dari itu, perender tidak memiliki akses langsung ke \textit{require} atau Node.js APIs yang lain. Untuk menyertakan modul NPM secara langsung di perender, kita harus menggunakan \textit{bundler toolchains} yang sama (misalnya, webpack atau parcel) yang digunakan di web.
 
-Untuk cara membuat aplikasi dengan \textit{electron} adalah sebagai berikut :
+Untuk cara membuat aplikasi dengan \textit{electron} adalah sebagai berikut : \cite{installElectron}
 
 \begin{enumerate}
-    \item Install terlebih dahulu Node.js dan npm (pakai versi terakhir LTS yang tersedia).
-    \item Cek versinya dengan mengetik node -v dan npm -v pada command prompt.
-    \item Buat folder dan inisialisasi paket npm dengan mengetik mkdir namaFolder lalu ketik cd namaFolder setelah itu ketik npm init pada \textit{command prompt}. Maka isi \textit{package.json} akan seperti pada Kode \ref{lst:kodePackageJson}.
+    \item \textbf{Prasyarat}
+    \begin{itemize}
+        \item Install terlebih dahulu Node.js dan npm (pakai versi terakhir LTS yang tersedia).
+        \item Cek versinya dengan mengetik node -v dan npm -v pada command prompt.
+    \end{itemize}
+    \item \textbf{Kerangka Projek}
+    \begin{itemize}
+        \item Buat folder dan inisialisasi paket npm dengan mengetik mkdir namaFolder lalu ketik cd namaFolder setelah itu ketik npm init pada \textit{command prompt}. Maka isi \textit{package.json} akan seperti pada Kode \ref{lst:kodePackageJson}.
     
-    \begin{lstlisting}[language=JavaScript, caption=Package.json\label{lst:kodePackageJson}]
-    {
-        "name": "my-electron-app",
-        "version": "1.0.0",
-        "description": "Hello World!",
-        "main": "main.js",
-        "author": "Jane Doe",
-        "license": "MIT",
-    }
-    \end{lstlisting}
-    \item Install aplikasi \textit{electron} ke dalam folder yang telah dibuat dengan cara mengetik npm install --save-dev electron pada command prompt.
-    \item Pada \textit{script file} package.json tambahkan \textit{command start} seperti pada Kode \ref{lst:kodeStartCommand}.
-    
-    \begin{lstlisting}[language=JavaScript, caption=\textit{Start command}\label{lst:kodeStartCommand}]
-    {
-        "scripts": {
-            "start": "electron ."
+        \begin{lstlisting}[language=JavaScript, caption=Package.json\label{lst:kodePackageJson}]
+        {
+            "name": "my-electron-app",
+            "version": "1.0.0",
+            "description": "Hello World!",
+            "main": "main.js",
+            "author": "Jane Doe",
+            "license": "MIT",
         }
-    }
-    \end{lstlisting}
-    \item Jalankan aplikasi \textit{electron} dengan mengetik \textit{npm start} pada \textit{command prompt}.
-    (Namun, pada tahap ini akan muncul \textit{error} yang meemberi tahu bahwa \textit{electron} tidak dapat menemukan aplikasi untuk dijalankan.)
-    \item Buatlah file kosong bernama \textit{main.js} di folder \textit{root} proyek. (Jika kita mengetikan kembali \textit{npm start} pada \textit{command prompt}, maka aplikasi \textit{electron} akan berjalan dan sudah tidak ada \textit{error}.
+        \end{lstlisting}
+        \item Install aplikasi \textit{electron} ke dalam folder yang telah dibuat dengan cara mengetik npm install --save-dev electron pada command prompt.
+        \item Pada \textit{script file} package.json tambahkan \textit{command start} seperti pada Kode \ref{lst:kodeStartCommand}.
+        
+        \begin{lstlisting}[language=JavaScript, caption=\textit{Start command}\label{lst:kodeStartCommand}]
+        {
+            "scripts": {
+                "start": "electron ."
+            }
+        }
+        \end{lstlisting}
+        \item Jalankan aplikasi \textit{electron} dengan mengetik \textit{npm start} pada \textit{command prompt}.
+        (Namun, pada tahap ini akan muncul \textit{error} yang memberi tahu bahwa \textit{electron} tidak dapat menemukan aplikasi untuk dijalankan.)
+    \end{itemize}
+    \item \textbf{Jalankan proses utama}
+    \begin{itemize}
+        \item Buatlah file kosong bernama \textit{main.js} di folder \textit{root} proyek. (Jika kita mengetikan kembali \textit{npm start} pada \textit{command prompt}, maka aplikasi \textit{Electron} akan berjalan dan sudah tidak ada \textit{error}.
+    \end{itemize}
+    \item \textbf{Buat halaman web}
     
+    Sebelum kita dapat membuat jendela untuk aplikasi kita, kita perlu membuat konten yang akan dimuat ke dalamnya. Di \textit{Electron}, setiap jendela menampilkan konten web yang dapat dimuat dari \textit{file HTML} lokal.
+    \begin{itemize}
+        \item Buatlah \textit{file index.html} di folder \textit{root} projek. Contoh kode \textit{index.html} dapat dilihat pada Kode \ref{lst:kodeIndex}.
+        \begin{lstlisting}[language=HTML, caption=Contoh kode \textit{index.html}\label{lst:kodeIndex}]
+        <!DOCTYPE html>
+        <html>
+          <head>
+            <meta charset="UTF-8">
+            <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+            <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+            <title>Hello World!</title>
+          </head>
+          <body>
+            <h1>Hello World!</h1>
+            We are using Node.js <span id="node-version"></span>,
+            Chromium <span id="chrome-version"></span>,
+            and Electron <span id="electron-version"></span>.
+          </body>
+        </html>
+        \end{lstlisting}
+    \end{itemize}
+    \item \textbf{Membuka halaman web di jendela browser}
+    
+    Setelah kita memiliki halaman web, untuk dapat memuatnya ke dalam jendela aplikasi, kita memerlukan dua modul \textit{Electron}. Pertama adalah modul \textit{app}, yang berfungsi untuk mengontrol application's event lifecycle. Kedua adalah modul \textit{BrowserWindow}, yang berfungsi untuk membuat dan mengelola jendela aplikasi.
+    \begin{itemize}
+        \item Karena proses utama menjalankan \textit{Node.js}, kita dapat mengimpor Kode \ref{lst:kodeCommonJS} sebagai modul \textit{CommonJS} di bagian atas \textit{file main.js}.
+        \begin{lstlisting}[language=JavaScript, caption=Kode impor modul \textit{CommondJS}\label{lst:kodeCommonJS}]
+        const { app, BrowserWindow } = require('electron')
+        \end{lstlisting}
+        \item Tambahkan fungsi \textit{createWindow()} yang memuat \textit{index.html} ke dalam \textit{BrowserWindow} baru dengan menambahkan Kode \ref{lst:kodeCreateWindow}.
+        \begin{lstlisting}[language=JavaScript, caption=Fungsi CreateWindow\label{lst:kodeCreateWindow}]
+        const createWindow = () => {
+          const win = new BrowserWindow({
+            width: 800,
+            height: 600
+          })
+        
+          win.loadFile('index.html')
+        }
+        \end{lstlisting}
+        \item Panggil fungsi createWindow() ini untuk membuka jendela. Di \textit{Electron}, jendela browser hanya dapat dibuat setelah \textit{event} aplikasi modul diaktifkan. Kita bisa menunggu event ini dengan menggunakan \textit{app.whenReady()} \textit{API}. Panggil \textit{createWindow()} setelah \textit{whenReady()} menyelesaikan \textit{Promise}nya dengan menambahkan Kode \ref{lst:kodeWhenReady}.
+        \begin{lstlisting}[language=JavaScript, caption=Memanggil fungsi createWindow\label{lst:kodeWhenReady}]
+        app.whenReady().then(() => {
+          createWindow()
+        })
+        \end{lstlisting}
+    \end{itemize}
+    \item \textbf{Kelola siklus hidup jendela}
+    \begin{itemize}
+        \item Perhatikan event modul \textit{app} \textit{'window-all-closed'} dan panggil \textit{app.quit()} jika pengguna tidak menggunakan \textit{macOS (darwin)} dengan menambahkan Kode \ref{lst:kodeDarwin}.
+        \begin{lstlisting}[language=JavaScript, caption=Memanggil fungsi quit\label{lst:kodeDarwin}]
+        app.on('window-all-closed', () => {
+          if (process.platform !== 'darwin') app.quit()
+        })
+        \end{lstlisting}
+    \end{itemize}
+    \item \textbf{Akses Node.js dari perender dengan \textit{preload script}}
+    
+    Hal terakhir yang harus dilakukan adalah mencetak nomor versi untuk \textit{Electron} dan dependensinya ke halaman web. \textit{Preload script} berjalan sebelum proses perender dimuat, dan memiliki akses ke perender global (jendela dan dokumen) dan lingkungan \textit{Node.js}.
+    \begin{itemize}
+        \item Buat skrip baru bernama \textit{preload.js} yang berisi seperti Kode \ref{lst:kodePreload}.
+        \begin{lstlisting}[language=JavaScript, caption=Kode \textit{preload.js}\label{lst:kodePreload}]
+        window.addEventListener('DOMContentLoaded', () => {
+          const replaceText = (selector, text) => {
+            const element = document.getElementById(selector)
+            if (element) element.innerText = text
+          }
+        
+          for (const dependency of ['chrome', 'node', 'electron']) {
+            replaceText(`${dependency}-version`, process.versions[dependency])
+          }
+        })
+        \end{lstlisting}
+    \end{itemize}
+    Kode \ref{lst:kodePreload} mengakses objek \textit{process.versions} \textit{Node.js} dan menjalankan fungsi dasar pembantu \textit{replaceText} untuk memasukkan nomor versi ke dalam dokumen \textit{HTML}. 
+    \begin{itemize}
+        \item Untuk melampirkan skrip ini ke proses perender, sampaikan jalur ke \textit{preload script} ke opsi \textit{webPreferences.preload} di konstruktor \textit{BrowserWindow} dengan menambahkan  Kode \ref{lst:kodeModifikasi} pada \textit{file} \textit{main.js}.
+        \begin{lstlisting}[language=JavaScript, caption=Penambahan kode pada \textit{file} \textit{main.js}\label{lst:kodeModifikasi}]
+            // include the Node.js 'path' module at the top of your file
+            const path = require('path')
+            
+            // modify your existing createWindow() function
+            const createWindow = () => {
+              const win = new BrowserWindow({
+                width: 800,
+                height: 600,
+                webPreferences: {
+                  preload: path.join(__dirname, 'preload.js')
+                }
+              })
+            
+              win.loadFile('index.html')
+            }
+            // ...
+            \end{lstlisting}
+    \end{itemize}
+    Ada dua konsep Node.js yang digunakan, pertama adalah \texttt{\_\_dirname} yang menunjuk ke jalur skrip yang sedang dieksekusi (dalam hal ini folder root proyek). Kedua adalah 
+    \textit{path.join API} yang menggabungkan beberapa segmen jalur bersama-sama, membuat \textit{string} jalur gabungan yang berfungsi di semua platform.
+    
+    Setelah mengikuti seluruh langkah ini, maka hasilnya akan seperti Gambar \ref{fig:gambarElectron}
+    
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=12cm, height=9cm]{Gambar/hasilContohProgramElectron.png}
+        \caption{Contoh membuat program \textit{Electron}}
+        \label{fig:gambarElectron}
+    \end{figure}
 \end{enumerate}
 
-\newpage
 \section{Vis.js}
 \textit{Vis.js} adalah sebuah visualisasi \textit{library} berbasis \textit{browser} yang dinamis. \textit{Library} dirancang agar mudah digunakan, untuk menangani sejumlah besar data dinamis, dan memungkinkan untuk manipulasi dan berinteraksi dengan data. \textit{Library} tersebut terdiri dari komponen \textit{DataSet}, \textit{Timeline}, \textit{Network}, \textit{Graph2d} dan \textit{Graph3d}. \cite{visjs}
 
 \subsection{Timeline}
-\textit{Timeline} adalah grafik visualisasi interaktif untuk memvisualisasikan data dalam bentuk waktu. Item data dapat berlangsung pada satu tanggal, atau memiliki tanggal mulai dan berakhir. Kita dapat dengan bebas memindahkan dan memperbesar \textit{timeline} dengan menyeret dan menggulir di \textit{timeline}. Item dapat dibuat, diedit, dan dihapus di \textit{timeline}. Skala waktu pada sumbu disesuaikan secara otomatis, dan mendukung skala mulai dari milidetik hingga tahun. \textit{Timeline} menggunakan HTML DOM biasa untuk merender \textit{timeline} dan item yang diletakkan di \textit{timeline}. Hal ini memungkinkan penyesuaian yang fleksibel menggunakan \textit{css style}. Contoh kode berikut pembuatan \textit{timeline} dapat dilihat pada Kode \ref{lst:kodeTimeline} dan untuk hasilnya dapat dilihat pada gambar \ref{fig:gambarHasilTimeline}.
+\textit{Timeline} adalah grafik visualisasi interaktif untuk memvisualisasikan data dalam bentuk waktu. Item data dapat berlangsung pada satu tanggal, atau memiliki tanggal mulai dan berakhir. Kita dapat dengan bebas memindahkan dan memperbesar \textit{timeline} dengan menyeret dan menggulir di \textit{timeline}. Item dapat dibuat, diedit, dan dihapus di \textit{timeline}. Skala waktu pada sumbu disesuaikan secara otomatis, dan mendukung skala mulai dari milidetik hingga tahun. \textit{Timeline} menggunakan HTML DOM biasa untuk merender \textit{timeline} dan item yang diletakkan di \textit{timeline}. Hal ini memungkinkan penyesuaian yang fleksibel menggunakan \textit{css style}. \cite{timeline}
+
+Untuk menggunakan \textit{timeline}, kita harus menyertakan file \textit{vis.js} dan \textit{vis-timeline-graph2d.min.css} yang dapat diunduh dari visjs.org. Contoh kode berikut pembuatan \textit{timeline} dapat dilihat pada Kode \ref{lst:kodeTimeline} dan untuk hasilnya dapat dilihat pada gambar \ref{fig:gambarHasilTimeline}.
 
 \begin{lstlisting}[language=HTML, caption=Contoh kode untuk membuat \textit{timeline} menggunakan \textit{vis.js}\label{lst:kodeTimeline}]
 <!DOCTYPE HTML>
@@ -297,11 +416,10 @@ Untuk cara membuat aplikasi dengan \textit{electron} adalah sebagai berikut :
     \label{fig:gambarHasilTimeline}
 \end{figure}
 
-\newpage
 \subsection{Network}
-Jaringan (\textit{Network}) adalah visualisasi untuk menampilkan jaringan - jaringan yang terdiri dari \textit{node} dan \textit{edge}. Visualisasinya mudah digunakan dan mendukung bentuk kustom, gaya, warna, ukuran, gambar, dan lain - lain. Visualisasi jaringan bekerja dengan lancar di \textit{browser} moderen apapun hingga beberapa ribu \textit{node} dan \textit{edge}. Untuk menangani jumlah node yang lebih besar, jaringan memiliki dukungan pengelompokan. Jaringan menggunakan \textit{HTML canvas} untuk \textit{rendering}.
+Jaringan (\textit{Network}) adalah visualisasi untuk menampilkan jaringan - jaringan yang terdiri dari \textit{node} dan \textit{edge}. Visualisasinya mudah digunakan dan mendukung bentuk kustom, gaya, warna, ukuran, gambar, dan lain - lain. Visualisasi jaringan bekerja dengan lancar di \textit{browser} moderen apapun hingga beberapa ribu \textit{node} dan \textit{edge}. Untuk menangani jumlah node yang lebih besar, jaringan memiliki dukungan pengelompokan. Jaringan menggunakan \textit{HTML canvas} untuk \textit{rendering}. \cite{network}
 
-Untuk menggunakan \textit{vis-network}, kita harus menyertakan file \textit{vis-network.js} dan \textit{vis-network.css} yang dapat diunduh dari visjs.org, atau dengan tautkan dari unpkg.com atau bisa juga dengan \textit{import} dari paket npm. Jika kita menambahkan ini ke aplikasi kita, kita perlu menentukan \textit{node} dan \textit{edgenya}. Kita juga dapat menggunakan \textit{vis.DataSets} untuk pengikatan data dinamis, misalnya, mengubah warna, label, atau pilihan apapun setelah kita menginisialisasi jaringan.
+Untuk menggunakan \textit{vis-network}, kita harus menyertakan file \textit{vis.js} dan \textit{vis-network.min.css} yang dapat diunduh dari visjs.org, atau dengan tautkan dari unpkg.com. Jika kita menambahkan ini ke aplikasi kita, kita perlu menentukan \textit{node} dan \textit{edgenya}. Kita juga dapat menggunakan \textit{vis.DataSets} untuk pengikatan data dinamis, misalnya, mengubah warna, label, atau pilihan apapun setelah kita menginisialisasi jaringan.
 
 Setelah kita memiliki data, yang kita butuhkan hanyalah \textit{container div} untuk memberi tahu \textit{vis} di mana harus meletakkan jaringan kita. Selain itu, kita dapat menggunakan pilihan objek untuk menyesuaikan banyak aspek jaringan. Contoh kode pembuatan \textit{network}  dimana file \textit{vis-network.js} dimasukkan dengan cara menautkan dari unpkg.com dapat dilihat pada Kode \ref{lst:kodeNetwork} dan untuk hasilnya dapat dilihat pada gambar \ref{fig:gambarHasilNetwork}.
 
@@ -365,61 +483,28 @@ Setelah kita memiliki data, yang kita butuhkan hanyalah \textit{container div} u
 \end{figure}
 
 \subsection{DataSet}
-Vis.js hadir dengan \textit{DataSet} yang fleksibel, yang dapat digunakan untuk menyimpan dan memanipulasi data yang tidak terstruktur serta memperhatikan perubahan dalam data tersebut. \textit{DataSet} berbasis nilai, dimana item data dapat ditambahkan, diperbarui, dihapus, dan seseorang dapat menyetujui perubahan tersebut dalam \textit{DataSet}. \textit{DataSet} juga dapat digunakan untuk menyimpan objek \textit{JSON} berdasarkan idnya. Objek dapat ditambahkan, diperbarui, dan dihapus dari \textit{DatSet}. Data dalam \textit{DataSet} dapat difilter dan diurutkan, serta \textit{fields} (seperti tanggal) dapat dikonversi ke dalam tipe tertentu. Data dapat dinormalisasi saat menambahkannya kedalam \textit{DataSet}. Contoh kode pembuatan \textit{DataSet} dapat dilihat pada Kode \ref{lst:kodeDataSet} dan untuk hasilnya dapat dilihat pada gambar.
+Vis.js hadir dengan \textit{DataSet} yang fleksibel, yang dapat digunakan untuk menyimpan dan memanipulasi data yang tidak terstruktur serta memperhatikan perubahan dalam data tersebut. \textit{DataSet} berbasis nilai, dimana item data dapat ditambahkan, diperbarui, dihapus, dan seseorang dapat menyetujui perubahan tersebut dalam \textit{DataSet}. \textit{DataSet} juga dapat digunakan untuk menyimpan objek \textit{JSON} berdasarkan idnya. Objek dapat ditambahkan, diperbarui, dan dihapus dari \textit{DatSet}. Data dalam \textit{DataSet} dapat difilter dan diurutkan, serta \textit{fields} (seperti tanggal) dapat dikonversi ke dalam tipe tertentu. Data dapat dinormalisasi saat menambahkannya kedalam \textit{DataSet}. \cite{dataset}
 
-\begin{lstlisting}[language=JavaScript, caption=Contoh kode untuk membuat \textit{DataSet} menggunakan \textit{vis.js}\label{lst:kodeDataSet}]
-// create a DataSet
-var options = {};
-var data = new vis.DataSet(options);
-
-// add items
-// note that the data items can contain different properties and data formats
-data.add([
-  {id: 1, text: 'item 1', date: new Date(2013, 6, 20), group: 1, first: true},
-  {id: 2, text: 'item 2', date: '2013-06-23', group: 2},
-  {id: 3, text: 'item 3', date: '2013-06-25', group: 2},
-  {id: 4, text: 'item 4'}
-]);
-
-// subscribe to any change in the DataSet
-data.on('*', function (event, properties, senderId) {
-  console.log('event', event, properties);
-});
-
-// update an existing item
-data.updateOnly({id: 2, group: 1});
-
-// remove an item
-data.remove(4);
-
-// get all ids
-var ids = data.getIds();
-console.log('ids', ids);
-
-// get a specific item
-var item1 = data.get(1);
-console.log('item1', item1);
-
-// retrieve a filtered subset of the data
-var items = data.get({
-  filter: function (item) {
-    return item.group == 1;
-  }
-});
-console.log('filtered items', items);
-
-// retrieve formatted items
-var items = data.get({
-  fields: ['id', 'date'],
-  type: {
-    date: 'ISODate'
-  }
-});
-console.log('formatted items', items);
-\end{lstlisting}
+Terdapat beberapa \textit{method} yang telah disediakan, seperti :
+\begin{itemize}
+    \item add ()
+    
+    Method ini berfungsi untuk menambahkan \textit{item}, dimana item data dapat berisi properti dan format data yang berbeda.
+    \item updateOnly ()
+    
+    Method ini berfungsi untuk memperbarui \textit{item} yang sudah ada.
+    \item remove ()
+    
+    Method ini bergfungsi untuk menghapus \textit{item}.
+    \item get ()
+    
+    Method ini berfungsi untuk mendapatkan \textit{item} tertentu.
+\end{itemize}
 
 \subsection{Graph2d}
-\textit{Graph2d} adalah grafik visualisasi interaktif yang berfungsi untuk menggambar data dalam bentuk grafik dua dimensi. Kita dengan bebas dapat memindahkan dan memperbesar grafik dengan cara menyeret dan menggulir pada jendela grafik. \textit{Graph2d} menggunakan \textit{HTML DOM} (\textit{JavaScript}) dan \textit{SVG} (\textit{Scalable Vector Graphics}) untuk proses \textit{rendering}. Hal ini memungkinkan penyesuaian yang fleksibel menggunakan \textit{styling} css. Contoh kode pembuatan \textit{Graph2d} dapat dilihat pada Kode \ref{lst:kodeGraph2d} dan untuk hasilnya dapat dilihat pada gambar \ref{fig:gambarHasilGraph2d}.
+\textit{Graph2d} adalah grafik visualisasi interaktif yang berfungsi untuk menggambar data dalam bentuk grafik dua dimensi. Kita dengan bebas dapat memindahkan dan memperbesar grafik dengan cara menyeret dan menggulir pada jendela grafik. \textit{Graph2d} menggunakan \textit{HTML DOM} (\textit{JavaScript}) dan \textit{SVG} (\textit{Scalable Vector Graphics}) untuk proses \textit{rendering}. Hal ini memungkinkan penyesuaian yang fleksibel menggunakan \textit{styling} css. \cite{graph2d}
+
+Contoh kode pembuatan \textit{Graph2d} dapat dilihat pada Kode \ref{lst:kodeGraph2d} dan untuk hasilnya dapat dilihat pada gambar \ref{fig:gambarHasilGraph2d}.
 
 \begin{lstlisting}[language=HTML, caption=Contoh kode untuk membuat \textit{graph2d} menggunakan \textit{vis.js}\label{lst:kodeGraph2d}]
 <!DOCTYPE HTML>
@@ -468,9 +553,10 @@ console.log('formatted items', items);
     \label{fig:gambarHasilGraph2d}
 \end{figure}
 
-\newpage
 \subsection{Graph3d}
-Graph3d adalah grafik visualisasi interaktif yang berfungsi untuk menggambar data dalam bentuk grafik tiga dimensi. Kita dengan bebas dapat memindahkan dan memperbesar grafik dengan cara menyeret dan menggulir pada jendela grafik. Graph3d juga mendukung animasi grafik serta menggunakan HTML canvas untuk membuat grafik, dan dapat merender hingga beberapa ribu titik data dengan lancar. Contoh kode pembuatan \textit{Graph2d} dapat dilihat pada Kode \ref{lst:kodeGraph3d} dan untuk hasilnya dapat dilihat pada gambar \ref{fig:gambarHasilGraph3d}.
+Graph3d adalah grafik visualisasi interaktif yang berfungsi untuk menggambar data dalam bentuk grafik tiga dimensi. Kita dengan bebas dapat memindahkan dan memperbesar grafik dengan cara menyeret dan menggulir pada jendela grafik. Graph3d juga mendukung animasi grafik serta menggunakan HTML canvas untuk membuat grafik, dan dapat merender hingga beberapa ribu titik data dengan lancar. \cite{graph3d}
+
+Contoh kode pembuatan \textit{Graph2d} dapat dilihat pada Kode \ref{lst:kodeGraph3d} dan untuk hasilnya dapat dilihat pada gambar \ref{fig:gambarHasilGraph3d}.
 
 \begin{lstlisting}[language=HTML, caption=Contoh kode untuk membuat \textit{graph3d} menggunakan \textit{vis.js}\label{lst:kodeGraph3d}]
 <!DOCTYPE HTML>
@@ -547,7 +633,7 @@ Graph3d adalah grafik visualisasi interaktif yang berfungsi untuk menggambar dat
 \section{FTIS Open Data}
 FTIS (Fakultas Teknologi Informasi dan Sains) adalah sebuah fakultas milik UNPAR (Universitas Katolik Parahyangan) yang memiliki tiga program studi, yaitu : Matematika, Fisika, dan Teknik Informatika. \textit{Open data} adalah data yang dapat bebas digunakan oleh semua orang untuk digunakan dan diterbitkan kembali sesuai keinginan, tanpa adanya batasan hak cipta, paten, atau mekanisme kontrol lainnya. Maka dari itu FTIS \textit{Open Data} dapat diartikan sebagai data milik FTIS khususnya program studi teknik informatika yang secara bebas dapat digunakan secara bebas oleh orang lain. FTIS \textit{open data} tersebut dapat diakses pada \url{https://ftisunpar.github.io/data/prasyarat.json}. \cite{ftisOpenData}
 
-\textit{Endpoint} didefinisikan sebagai \textit{url} yang mengikuti setelah basis \textit{url} \url{https://ftisunpar.github.io/data/}. Sebagai contoh \textit{endpoint} prasyarat.json memiliki alamat \textit{url} lengkap \url{https://ftisunpar.github.io/data/prasyarat.json}. Prasyarat.json memiliki informasi tentang seluruh matakuliah, jumlah SKS, posisi semester, serta prasyarat yang ada. Dengan bentuk datanya adalah array dari matakuliah. Setiap struktur matakuliah memiliki properti sebagai berikut : 
+\textit{Endpoint} didefinisikan sebagai \textit{url} yang mengikuti setelah basis \textit{url} \url{https://ftisunpar.github.io/data/}. Sebagai contoh \textit{endpoint} prasyarat.json memiliki alamat \textit{url} lengkap \url{https://ftisunpar.github.io/data/prasyarat.json}. Prasyarat.json memiliki informasi tentang seluruh matakuliah, jumlah SKS, posisi semester, serta prasyarat yang ada. Dengan bentuk datanya adalah array untuk setiap matakuliahnya. Setiap struktur matakuliah memiliki properti sebagai berikut: 
 
 \begin{itemize}
     \item kode (String)
@@ -600,6 +686,25 @@ Definisi prasyarat berdasarkan macamnya :
     
     Property ini mulai berlaku karena pergantian kurikulum. Prasyarat ini memiliki maksud bahwa matakuliah ini mulai berlaku semenjak angkatan x.
 \end{itemize}
+
+\section{JavaScript}
+\textit{JavaScript} (sering disingkat menjadi JS) adalah sebuah bahasa berorientasi objek yang dikenal sebagai bahasa \textit{scripting} untuk halaman web, tetapi digunakan di banyak lingkungan \textit{non-browser} juga. \textit{Javascript} merupakan bahasa \textit{scripting multi-paradigma} berbasis prototipe yang dinamis, dan mendukung gaya pemrograman berorientasi objek, imperatif, dan fungsional. \cite{JavaScript}
+
+JavaScript berjalan di sisi klien \textit{web}, yang dapat digunakan untuk merancang / memprogram bagaimana perilaku halaman web saat terjadi suatu \textit{event} tertentu. \textit{JavaScript} adalah bahasa yang mudah dipelajari dan juga merupakan bahasa \textit{scripting} yang \textit{powerful}, karena banyak digunakan untuk mengontrol perilaku halaman web.
+
+Berlawanan dengan kesalahpahaman pada umumnya, \textit{JavaScript} bukanlah "\textit{Java} yang diinterpretasikan". Singkatnya, \textit{JavaScript} adalah bahasa  \textit{scripting} dinamis yang mendukung konstruksi objek berbasis prototipe. Sintaks dasarnya sengaja mirip dengan \textit{Java} dan \textit{C++} untuk mengurangi jumlah konsep baru yang diperlukan untuk mempelajari bahasa tersebut. Konstruksi bahasa, seperti pernyataan \textit{if}, \textit{loop} \textit{for and while}, dan \textit{switch and try} ... \textit{catch blocks} berfungsi sama seperti pada bahasa ini (atau hampir sama).
+
+\textit{JavaScript} dapat berfungsi sebagai bahasa prosedural yang berorientasi objek. Objek dibuat secara terprogram dalam \textit{JavaScript}, dengan melampirkan metode dan properti ke objek yang kosong pada waktu proses, yang bertentangan dengan sintaks kelas pada umumnya dalam bahasa yang \textit{dicompile} seperti \textit{C++} dan \textit{Java}. Setelah objek telah dibangun dapat digunakan sebagai prototipe untuk membuat objek serupa. 
+
+\subsection{Async and Await}
+Penambahan yang lebih baru pada bahasa \textit{JavaScript} adalah fungsi \textit{async} dan kata kunci \textit{await}, ditambahkan dalam \textit{ECMAScript} 2017. Fitur-fitur ini membuat kode \textit{asinkron} lebih mudah untuk ditulis dan dibaca setelahnya. \cite{async}
+
+Fungsi \textit{async} adalah fungsi yang mengetahui bagaimana mengharapkan kemungkinan kata kunci \textit{await} digunakan untuk memanggil \textit{asynchronous code}. Nilai pengembaliannya dijamin akan dikonversi menjadi \textit{promises}. Untuk dapat menggunakan nilai yang dikembalikan saat \textit{promise} terpenuhi, kita bisa menggunakan  .then() block:. Jadi kata kunci async ditambahkan ke fungsi untuk memberi tahu mereka agar mengembalikan \textit{promises} daripada langsung mengembalikan nilainya.
+
+Keuntungan dari fungsi \textit{async} hanya menjadi jelas ketika menggabungkannya dengan kata kunci \textit{await}. \textit{Await} hanya bekerja di dalam fungsi \textit{async} dalam kode \textit{JavaScript} biasa, namun dapat digunakan sendiri dengan modul \textit{JavaScript}. \textit{Await} dapat diletakkan di depan fungsi berbasis \textit{promise async} apapun untuk menjeda kode pada baris itu hingga \textit{promise} terpenuhi, lalu mengembalikan nilai yang dihasilkan. \textit{Await} dapat digunakan saat memanggil fungsi apapun yang mengembalikan \textit{promise}, termasuk fungsi \textit{API web}.
+
+Untuk membuat permintaan dan mengambil sumber daya, gunakan metode \textit{fetch()}. Metode ini diimplementasikan di beberapa antarmuka, khususnya \textit{Window} dan \textit{WorkerGlobalScope}. Metode fetch() mengambil satu argumen wajib, jalur ke sumber daya yang ingin diambil. Kemudian mengembalikan promise yang memutuskan ke respon untuk permintaan itu (segera setelah server merespons dengan header) bahkan jika respons server di \textit{HTTP} adalah status eror.
+
 
 
 
